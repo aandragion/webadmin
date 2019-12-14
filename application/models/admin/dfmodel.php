@@ -103,7 +103,7 @@ class dfmodel extends CI_Model
         $this->trailer = $post["trailer"];
         $this->id_genre = $post["id_genre"];
         $this->status_film = $post["status_film"];
-        $this->durasi = $post["durasi"];
+        $this->durasi = $post["durasi" + 'menit'];
         $this->rilis = $post["rilis"];
         $this->db->insert($this->_table, $this);
     }
