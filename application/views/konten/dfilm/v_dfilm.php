@@ -28,7 +28,7 @@
 
 
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah">
-					<i class="fa fa-film"></i> 
+					<i class="fa fa-film"></i>
 					Tambah
 				</button>
 
@@ -38,7 +38,7 @@
 				<hr>
 
 				<div class="panel panel-primary">
-					<div class="panel-heading">  
+					<div class="panel-heading">
 
 						<i class="fa fa-film"></i> Data Film
 
@@ -74,9 +74,12 @@
 										<td><center/>
 											<img src="<?php echo base_url('upload/gbrfilm/'.$row->gambar) ?>" width="64" />
 										</td>
-										<td><center/>
+										<!-- <td><center/>
 											<video src="<?php echo base_url('upload/vdfilm/'.$row->trailer) ?>" width="64" />
-											</td>
+											</td> -->
+											<td >
+												<?php echo $row->trailer ?>
+											</td
 											<td >
 												<?php echo $row->genre ?>
 											</td>
@@ -120,7 +123,7 @@
 
 					<div id="modal-tambah" class="modal fade">
 						<div class="modal-dialog">
-							<form action="<?php echo site_url('admin/dfcontroller/add'); ?>" method="post" enctype="multipart/form-data"> 
+							<form action="<?php echo site_url('admin/dfcontroller/add'); ?>" method="post" enctype="multipart/form-data">
 								<div class="modal-content">
 									<div class="modal-header bg-primary">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -140,7 +143,7 @@
 										<br>
 										<div class="form-group">
 											<label class='col-md-3'>trailer</label>
-											<div class='col-md-9'><input type="file" name="trailer" id='trailer'  class="form-control-file" ></div>
+											<div class='col-md-9'><input type="text" name="trailer" id='trailer'  required placeholder="Masukkan Modal Name" class="form-control" ></div>
 										</div>
 										<br>
 										<div class="form-group">
@@ -191,14 +194,14 @@
 									</div>
 								</form>
 							</div>
-						</div> 
+						</div>
 					</div>
 
 				<!-- 	<div class="modal fade" id="modal-edit" role="dialog">
 						<div class="modal-dialog">
 							<?php foreach ($film as $film): ?>
 								<input type="hidden" name="id" value="<?php echo $film->id_film?>">
-								<form action="<?php echo site_url('admin/dfcontroller/edit'); ?>" method="post" enctype="multipart/form-data"> 
+								<form action="<?php echo site_url('admin/dfcontroller/edit'); ?>" method="post" enctype="multipart/form-data">
 
 									<div class="modal-content">
 										<div class="modal-header bg-primary">
@@ -265,4 +268,3 @@
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
-
