@@ -79,7 +79,7 @@
 											</td> -->
 											<td >
 												<?php echo $row->trailer ?>
-											</td
+											</td>
 											<td >
 												<?php echo $row->genre ?>
 											</td>
