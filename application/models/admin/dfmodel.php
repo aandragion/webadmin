@@ -63,7 +63,7 @@ class dfmodel extends CI_Model
 
 
     public function tampil_data()
-    {  
+    {
         return $this->db->get('genre')->result();
     }
 
@@ -72,34 +72,35 @@ class dfmodel extends CI_Model
         return $this->db->get_where($this->_table, ["id_film" => $id])->row();
     }
 
-// function buat_kode()   {    
+// function buat_kode()   {
 //   $this->db->select('RIGHT(film.id_film,2) as kode', FALSE);
-//   $this->db->order_by('id_film','DESC');    
-//   $this->db->limit(1);     
-//   $query = $this->db->get('film');      //cek dulu apakah ada sudah ada kode di tabel.    
-//   if($query->num_rows() <> 0){       
-//    //jika kode ternyata sudah ada.      
-//      $data = $query->row();      
-//      $kode = intval($data->kode) + 1;     
+//   $this->db->order_by('id_film','DESC');
+//   $this->db->limit(1);
+//   $query = $this->db->get('film');      //cek dulu apakah ada sudah ada kode di tabel.
+//   if($query->num_rows() <> 0){
+//    //jika kode ternyata sudah ada.
+//      $data = $query->row();
+//      $kode = intval($data->kode) + 1;
 //  }
-//  else{       
-//    //jika kode belum ada      
-//      $kode = 1;     
+//  else{
+//    //jika kode belum ada
+//      $kode = 1;
 //  }
-//  $kodemax = str_pad($kode, 2, "0", STR_PAD_LEFT);    
-//  $kodejadi = "F".$kodemax;     
-//  return $kodejadi;  
+//  $kodemax = str_pad($kode, 2, "0", STR_PAD_LEFT);
+//  $kodejadi = "F".$kodemax;
+//  return $kodejadi;
 // }
 
 
     public function save()
     {
         $post = $this->input->post();
-        $this->id_film = uniqid(); //$this->buat_kode(); 
+        $this->id_film = uniqid(); //$this->buat_kode();
         $this->judul_film = $post["judul_film"];
         $this->sinopsis = $post["sinopsis"];
         $this->gambar = $this->_uploadImage();
-        $this->trailer = $this->_uploadVideo();
+        // $this->trailer = $this->_uploadVideo();
+        $this->trailer = $post["trailer"];
         $this->id_genre = $post["id_genre"];
         $this->status_film = $post["status_film"];
         $this->durasi = $post["durasi"];
@@ -120,11 +121,12 @@ class dfmodel extends CI_Model
             $this->gambar = $post["old_image"];
         }
 
-        if (!empty($_FILES["trailer"]["name"])) {
-            $this->trailer = $this->_uploadVideo();
-        } else {
-            $this->trailer = $post["old_video"];
-        }
+        // if (!empty($_FILES["trailer"]["name"])) {
+        //     $this->trailer = $this->_uploadVideo();
+        // } else {
+        //     $this->trailer = $post["old_video"];
+        // }
+        $this->trailer = $post["trailer"];
         $this->id_genre = $post["id_genre"];
         $this->status_film = $post["status_film"];
         $this->durasi = $post["durasi"];
@@ -134,39 +136,39 @@ class dfmodel extends CI_Model
 
     public function delete($id)
     {
-        $this->_deleteVideo($id);
+        // $this->_deleteVideo($id);
         $this->_deleteImage($id);
         return $this->db->delete($this->_table, array("id_film" => $id));
     }
 
-    private function _uploadVideo()
-    {
-        $config['upload_path']          = './upload/vdfilm/';
-        $config['allowed_types']        = 'avi|flv|wmv|mp3|mp4|mkv|MKV|MPEG|WMP|3gp|gif';
-        $config['file_name']            = $this->id_film;
-        $config['overwrite']            = true;
-    $config['post_max_size']        = 102400; // 1MB
-        // $config['max_width']            = 1024;
-        // $config['max_height']           = 768;
-
-    $this->load->library('upload', $config);
-
-    if ($this->upload->do_upload('trailer')) {
-         // print_r($this->upload->display_errors());
-        return $this->upload->data("file_name");
-    }
-    // print_r($this->upload->display_errors());
-        return "default.mp4";
-}
-
-private function _deleteVideo($id)
-{
-    $film = $this->getById($id);
-    if ($film->trailer != "default.mp4") {
-        $filename = explode(".", $film->trailer)[0];
-        return array_map('unlink', glob(FCPATH."upload/vdfilm/$filename.*"));
-    }
-}
+//     private function _uploadVideo()
+//     {
+//         $config['upload_path']          = './upload/vdfilm/';
+//         $config['allowed_types']        = 'avi|flv|wmv|mp3|mp4|mkv|MKV|MPEG|WMP|3gp|gif';
+//         $config['file_name']            = $this->id_film;
+//         $config['overwrite']            = true;
+//     $config['post_max_size']        = 102400; // 1MB
+//         // $config['max_width']            = 1024;
+//         // $config['max_height']           = 768;
+//
+//     $this->load->library('upload', $config);
+//
+//     if ($this->upload->do_upload('trailer')) {
+//          // print_r($this->upload->display_errors());
+//         return $this->upload->data("file_name");
+//     }
+//     // print_r($this->upload->display_errors());
+//         return "default.mp4";
+// }
+//
+// private function _deleteVideo($id)
+// {
+//     $film = $this->getById($id);
+//     if ($film->trailer != "default.mp4") {
+//         $filename = explode(".", $film->trailer)[0];
+//         return array_map('unlink', glob(FCPATH."upload/vdfilm/$filename.*"));
+//     }
+// }
 
 private function _uploadImage()
 {
