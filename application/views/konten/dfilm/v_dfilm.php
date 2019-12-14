@@ -87,7 +87,7 @@
 												<?php echo $row->status_film ?>
 											</td>
 											<td >
-												<?php echo $row->durasi ?>
+												<?php $t=" menit"; echo $row->durasi,$t ?>
 											</td>
 											<td >
 												<?php echo $row->rilis ?>
@@ -167,7 +167,7 @@
 										<br>
 										<div class="form-group">
 											<label class='col-md-3'>Durasi</label>
-											<div class='col-md-9'><input type="text" name="durasi"  required placeholder="Masukkan Modal Name" class="form-control" ></div>
+											<div class='col-md-9'><input type="text" name="durasi"  required placeholder="Masukkan Durasi berformat menit" class="form-control" ></div>
 										</div>
 										<br>
 										<div class="form-group">
