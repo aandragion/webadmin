@@ -8,7 +8,7 @@
 
 		<?php if ($this->session->flashdata('success')): ?>
 			<div class="alert alert-success" role="alert">
-				<?php echo $this->session->flashdata('success'); ?> 
+				<?php echo $this->session->flashdata('success'); ?>
 			</div>
 		<?php endif; ?>
 
@@ -19,7 +19,7 @@
 				<a href="<?php echo site_url('admin/dfcontroller') ?>"><i class="fa fa-arrow-left"></i>
 				Back</a>
 			</div>
-			<div class="card-body"> 
+			<div class="card-body">
 
 				<form action="<?php base_url(" admin/dfcontroller/edit") ?>" method="post"
 					enctype="multipart/form-data" >
@@ -53,6 +53,14 @@
 						</div>
 					</div>
 					<div class="form-group">
+				<label for="trailer">Trailer</label>
+				<input class="form-control <?php echo form_error('trailer') ? 'is-invalid':'' ?>"
+				type="text" name="trailer" placeholder="Sinopsis" value="<?php echo $film->trailer ?>" />
+				<div class="invalid-feedback">
+					<?php echo form_error('trailer') ?>
+				</div>
+			</div>
+					<!-- <div class="form-group">
 						<label for="trailer">Trailer</label>
 						<input class="form-control-file <?php echo form_error('trailer') ? 'is-invalid':'' ?>"
 						type="file" name="trailer" />
@@ -60,7 +68,7 @@
 						<div class="invalid-feedback">
 							<?php echo form_error('trailer') ?>
 						</div>
-					</div>
+					</div> -->
 					<!-- 		<input type="hidden" name="id_genre" value="<?php echo $film->id_genre?>" /> -->
 					<input type="hidden" name="durasi" value="<?php echo $film->durasi?>" />
 					<input type="hidden" name="rilis" value="<?php echo $film->rilis?>" />
@@ -69,7 +77,7 @@
 						<label for="status_film">Status Film</label>
 						<div >
 							<select class="form-control" name="status_film">
-								<?php 
+								<?php
 
 								$opsis = array(
 									'playing'     => 'playing',
@@ -80,11 +88,11 @@
 								$opsi_tersimpan =  $film->status_film;
 								foreach( $opsis as $opsi  ) {
 									?>
-									<option name="status" <?php echo ($opsi == $opsi_tersimpan) ? 'selected' 
+									<option name="status" <?php echo ($opsi == $opsi_tersimpan) ? 'selected'
 									: '' ; ?> value="<?php echo $opsi ?>"><?php echo $opsi ?></option>';
-									<?php 
+									<?php
 								}
-								?> 
+								?>
 							</select>
 						</div>
 					</div>
@@ -93,16 +101,16 @@
 						<label for="status_film">Gendre</label>
 						<div >
 							<select class="form-control" name="id_genre" id="">
-								<?php 
+								<?php
 
 								$opsi_tersimpan = $film->id_genre;
 								foreach( $genre as $opsi  ) {
 									?>
-									<option name="status" <?php echo ($opsi->id_genre == $opsi_tersimpan) ? 'selected' 
+									<option name="status" <?php echo ($opsi->id_genre == $opsi_tersimpan) ? 'selected'
 									: '' ; ?> value="<?php echo $opsi->id_genre ?>"><?php echo $opsi->genre ?></option>';
-									<?php 
+									<?php
 								}
-								?> 
+								?>
 							</select>
 						</div>
 					</div>
@@ -122,8 +130,3 @@
 	</html>
 </div>
 <!-- /#wrapper -->
-
-
-
-
-
