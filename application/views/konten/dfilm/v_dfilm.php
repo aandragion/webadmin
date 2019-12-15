@@ -78,7 +78,8 @@
 											<video src="<?php echo base_url('upload/vdfilm/'.$row->trailer) ?>" width="64" />
 											</td> -->
 											<td >
-												<?php echo $row->trailer ?>
+												<!-- <?php echo $row->trailer ?> -->
+												 <a href="<?php echo ('https://www.youtube.com/watch?v='.$row->trailer); ?>"> <?php echo $row->judul_film ?> </a> 
 											</td>
 											<td >
 												<?php echo $row->genre ?>
