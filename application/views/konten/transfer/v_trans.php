@@ -1,9 +1,9 @@
-<!--   Content Wrapper. Contains page content -->
+<meta http-equiv="refresh" content="5" /><!--   Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<!DOCTYPE html>
 	<html lang="en">
-	
+
 	<body>
 		<!-- DataTables -->
 		<div class="card mb-3">
@@ -14,7 +14,7 @@
 					</ul>
 					<hr>
 					<div class="panel panel-primary">
-						<div class="panel-heading">  
+						<div class="panel-heading">
 
 							<i class="fa fa-credit-card"></i> Data Transfer
 						</div>
@@ -25,7 +25,7 @@
 										<tr>
 											<th>No</th>
 											<th>Nama</th>
-											
+
 									<!-- 		<th>Rekening pemilik</th> -->
 											<th>Nama pemilik</th>
 											<th>Jumlah Transfer</th>
@@ -41,7 +41,7 @@
 												<td width="150">
 													<?php echo $transfer->username ?>
 												</td>
-												
+
 											<!-- 	<td>
 													<?php echo $topup->rek_pemilik ?>
 												</td> -->
@@ -50,7 +50,7 @@
 												</td>
 												 <td width="150">
 													<?php echo $transfer->total_harga ?>
-												</td> 
+												</td>
 												<td>
 													<?php echo $transfer->bts_transfer ?>
 												</td>
@@ -64,7 +64,7 @@
 														<!-- <i class="fa fa-edit"></i>  -->
 
 													ubah status</a>
-														
+
 														<!-- <a onclick="deleteConfirm('<?php echo site_url('admin/dfcontroller/delete/'.$icash->id_icash) ?>')"
 															href="#!" class="btn btn-small text-danger"><i class="fa fa-trash"></i> Hap1us</a> -->
 														</td>
