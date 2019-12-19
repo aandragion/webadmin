@@ -36,7 +36,7 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-money"></i>
-          <span> Saldo  <span class="badge"><?php  
+          <span> Saldo  <span class="badge"><?php
           $query = "SELECT COUNT( id_topup ) AS jumlah FROM topup WHERE id_status = 2";
           $hasil = $this->db->query( $query )->result();
           foreach ($hasil as $data) {
@@ -64,9 +64,9 @@
       <li class="treeview">
         <a href="<?php echo base_url() ?>index.php/admin/transctr/index">
           <i class="fa fa-credit-card"></i>
-          <span>Transfer <span class="badge"><?php  
+          <span>Transfer <span class="badge"><?php
           $query = "SELECT COUNT( id_transfer ) AS jumlah FROM transfer WHERE id_status = 2";
-          
+
           $hasil = $this->db->query( $query )->result();
           foreach ($hasil as $data) {
             echo $data->jumlah;
