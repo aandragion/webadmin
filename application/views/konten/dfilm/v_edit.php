@@ -70,8 +70,44 @@
 						</div>
 					</div> -->
 					<!-- 		<input type="hidden" name="id_genre" value="<?php echo $film->id_genre?>" /> -->
-					<input type="hidden" name="durasi" value="<?php echo $film->durasi?>" />
+					<!-- <input type="hidden" name="durasi" value="<?php echo $film->durasi?>" /> -->
 					<input type="hidden" name="rilis" value="<?php echo $film->rilis?>" />
+
+					<div class="form-group">
+				<label for="durasi">Durasi</label>
+				<input class="form-control <?php echo form_error('durasi') ? 'is-invalid':'' ?>"
+				type="text" name="durasi" placeholder="Durasi" value="<?php echo $film->durasi ?>" />
+				<div class="invalid-feedback">
+					<?php echo form_error('durasi') ?>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="rilis">Rilis</label>
+				<input class="form-control <?php echo form_error('rilis') ? 'is-invalid':'' ?>"
+				type="date" name="rilis" placeholder="rilis" value="<?php echo $film->rilis ?>" />
+				<div class="invalid-feedback">
+					<?php echo form_error('rilis') ?>
+				</div>
+			</div>
+
+					<div class="form-group">
+						<label for="status_film">Gendre</label>
+						<div >
+							<select class="form-control" name="id_genre" id="">
+								<?php
+
+								$opsi_tersimpan = $film->id_genre;
+								foreach( $genre as $opsi  ) {
+									?>
+									<option name="status" <?php echo ($opsi->id_genre == $opsi_tersimpan) ? 'selected'
+									: '' ; ?> value="<?php echo $opsi->id_genre ?>"><?php echo $opsi->genre ?></option>';
+									<?php
+								}
+								?>
+							</select>
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label for="status_film">Status Film</label>
@@ -96,25 +132,6 @@
 							</select>
 						</div>
 					</div>
-
-					<div class="form-group">
-						<label for="status_film">Gendre</label>
-						<div >
-							<select class="form-control" name="id_genre" id="">
-								<?php
-
-								$opsi_tersimpan = $film->id_genre;
-								foreach( $genre as $opsi  ) {
-									?>
-									<option name="status" <?php echo ($opsi->id_genre == $opsi_tersimpan) ? 'selected'
-									: '' ; ?> value="<?php echo $opsi->id_genre ?>"><?php echo $opsi->genre ?></option>';
-									<?php
-								}
-								?>
-							</select>
-						</div>
-					</div>
-
 
 					<input class="btn btn-success" type="submit" name="btn" value="Save" />
 				</form>
