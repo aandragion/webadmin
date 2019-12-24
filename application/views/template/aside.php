@@ -87,7 +87,7 @@
         </a>
       </li>
       <li class="treeview">
-        <a href="<?php echo base_url() ?>index.php/admin/studioctr/index">
+        <a href="<?php echo base_url() ?>index.php/admin/recordctr/index">
           <i class="fa fa-th"></i>
           <span>Laporan</span>
         </a>
