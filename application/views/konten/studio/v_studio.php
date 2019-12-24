@@ -2,25 +2,85 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<div class="row">
-<div class="col-sm-1 col-md-1" >
-</div>
 
-			<!-- looping products -->
-			  <?php foreach($kursi as $key) : ?>
-			  <div class="col-sm-1 col-md-1" >
-								  <div class="panel panel-primary" >
-					<div  class="panel-body" style="min-height:1px , min-width:1px"><center>
-<?php echo $key->Kursi ?>
-</div>
-</div>
-			  </div>
-			  <?php endforeach; ?>
-			<!-- end looping -->
-			<div class="col-sm-1 col-md-1" >
-			</div>
-			</div>
+		<form method="post" action="<?php echo site_url("admin/studioctr/pencarian")?>">
+			<div class="col-md-2 col-sm-2 col-xs-2" align="center"> <br>
+				<select class="form-control" name="id_jadwal">
+					<option>-Pilih Jadwal-</option>
+					<?php
+					foreach ($jadwal as $row) : ?>
+					<option value="<?php echo $row->id_jadwal ?>"><?php echo $row->judul_film ?>	<?php echo $row->tgl_jadwal ?></option>
+				<?php endforeach; ?>
+			</select>
+		</div><br>
+		<button  type="submit" class="btn btn-primary">Cari</button>
+		<!-- <br><input type="submit" class="btn btn-primary" value="Cari"> -->
+	</form>
+
+	<?php
+
+	foreach( $kursi as $key) {
+		$kursih[] = explode(' ', $key->Kursi);
+	}
+	$kurs = array_merge(... $kursih);
+	// echo '<pre>';
+	// print_r($kurs);
+	// echo '</pre>';
+	if(isset($booking)){
+		foreach( $booking as $booked) {
+			$kursib[] = explode(' ', $booked->kursi);
+		}
+		if(isset($kursib)){
+			$kursis = array_merge(... $kursib);
+			$filkur = array_unique($kursis);
+		}else {
+			$kursib =[];
+			$filkur = $kursib;
+		}
+	}
+	else{
+		$filkur = [];
+	}
+
+	// echo '<pre>';
+	// print_r($filkur);
+	// echo '</pre>';
 
 
-	<!-- /.content -->
+
+
+	foreach($kurs as $key) {
+		echo "<br>
+		<div class='row'>
+		<div class='col-xs-1' >
+		<div class='panel panel-default' >
+		<div  class='panel-body' style='text-align: center'><input type='checkbox' nama='seat[]'";
+		foreach($filkur as $bookings){
+			echo ($bookings === $key) ? 'checked':'';
+
+		}
+		echo ">".$key.'</input></div>
+		</div>
+		</div>
+		</div>';
+	}
+	?>
+	<div class="row">
+		<!-- looping products -->
+		<?php foreach($kursi as $key) : ?>
+		<div class="col-xs-1" >
+		<div class="panel panel-default" >
+		<div  class="panel-body" style='text-align: center'>
+		<label><input type="checkbox" name="kursi"> <?php echo $key->Kursi; ?></label>
 	</div>
-	<!-- /.content-wrapper -->
+</div>
+</div>
+<?php endforeach; ?>
+<!-- end looping -->
+</div>
+
+<!-- /.content -->
+
+</div>
+</div>
+<!-- /.content-wrapper -->
