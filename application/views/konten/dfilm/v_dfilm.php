@@ -79,7 +79,7 @@
 											</td> -->
 											<td >
 												<!-- <?php echo $row->trailer ?> -->
-												 <a href="<?php echo ('https://www.youtube.com/watch?v='.$row->trailer); ?>"> <?php echo $row->judul_film ?> </a> 
+												 <a href="<?php echo ('https://www.youtube.com/watch?v='.$row->trailer); ?>"> <?php echo $row->judul_film ?> </a>
 											</td>
 											<td >
 												<?php echo $row->genre ?>
@@ -99,8 +99,8 @@
 											<td><center/>
 												<a href="<?php echo site_url('admin/dfcontroller/edit/'.$row->id_film) ?>"
 													class="btn btn-small"><i class="fa fa-edit"></i> Edit</a>
-												<!-- <a onclick="deleteConfirm('<?php echo site_url('admin/dfcontroller/delete/'.$row->id_film) ?>')"
-													href="<?php echo site_url('admin/dfcontroller/delete/'.$row->id_film) ?>" class="btn btn-small text-danger"><i class="fa fa-trash"></i> Hapus</a> -->
+												<a onclick="deleteConfirm('<?php echo site_url('admin/dfcontroller/delete/'.$row->id_film) ?>')"
+													href="<?php echo site_url('admin/dfcontroller/delete/'.$row->id_film) ?>" class="btn btn-small text-danger"><i class="fa fa-trash"></i> Hapus</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>
