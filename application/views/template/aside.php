@@ -83,7 +83,13 @@
       <li class="treeview">
         <a href="<?php echo base_url() ?>index.php/admin/studioctr/index">
           <i class="fa fa-th"></i>
-          <span>Informasi Studio</span>
+          <span>Informasi Kursi</span>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="<?php echo base_url() ?>index.php/admin/studioctr/index">
+          <i class="fa fa-th"></i>
+          <span>Laporan</span>
         </a>
       </li>
     </ul>
