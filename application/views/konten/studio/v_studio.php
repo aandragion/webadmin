@@ -1,5 +1,7 @@
 <!--   Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+
+	<div class="container">
 	<!-- Content Header (Page header) -->
 	<div class="row">
 
@@ -26,6 +28,7 @@
 	// echo '<pre>';
 	// print_r($kurs);
 	// echo '</pre>';
+	echo "<br><div class='row'>";
 	if(isset($booking)){
 		foreach( $booking as $booked) {
 			$kursib[] = explode(' ', $booked->kursi);
@@ -41,17 +44,12 @@
 	else{
 		$filkur = [];
 	}
-
 	// echo '<pre>';
 	// print_r($filkur);
 	// echo '</pre>';
-
-
-
-
 	foreach($kurs as $key) {
-		echo "<br>
-		<div class='row'>
+		echo "
+
 		<div class='col-xs-1' >
 		<div class='panel panel-default' >
 		<div  class='panel-body' style='text-align: center'><input type='checkbox' nama='seat[]'";
@@ -61,26 +59,26 @@
 		}
 		echo ">".$key.'</input></div>
 		</div>
-		</div>
+
 		</div>';
 	}
+	echo "	</div>";
 	?>
-	<div class="row">
+	<!-- <div class="row">
 		<!-- looping products -->
 		<?php foreach($kursi as $key) : ?>
-		<div class="col-xs-1" >
+		<!-- <div class="col-xs-1" >
 		<div class="panel panel-default" >
 		<div  class="panel-body" style='text-align: center'>
 		<label><input type="checkbox" name="kursi"> <?php echo $key->Kursi; ?></label>
 	</div>
 </div>
-</div>
+</div> -->
 <?php endforeach; ?>
 <!-- end looping -->
-</div>
-
+<!-- </div> --> 
 <!-- /.content -->
-
+</div>
 </div>
 </div>
 <!-- /.content-wrapper -->
