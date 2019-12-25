@@ -38,7 +38,7 @@ class studiomdl extends CI_Model
     return $query->result();
   }
 
-  function pencarian_d($id= '5db923d93d4'){
+  function pencarian_d($id){
     $this->db->select('*');
     $this->db->from('nonton');
       $this->db->join('pesan','pesan.id_pesan=nonton.id_pesan');
