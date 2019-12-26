@@ -2,86 +2,124 @@
 
 class recordmdl extends CI_Model
 {
-    private $_table = "recort";//nama tabel
-// nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
-    public $id_recort;
-    public $id_jadwal;
-    public $j_pesanan;
-    public $j_kursi;
-    public $j_kursib;
-    public $pemasukkan;
+  private $_table = "recort";//nama tabel
+  // nama kolom di tabel, harus sama huruf besar dan huruf kecilnya!
+  public $id_recort;
+  public $id_jadwal;
+  public $j_pesanan;
+  public $j_kursi;
+  public $j_kursib;
+  public $pemasukkan;
 
-    public function rules()
-    {
-        return [
-            ['field' => 'id_jadwal',
-            'label' => 'id_jadwal',
-            'rules' => 'required'],
+  public function rules()
+  {
+    return [
+      ['field' => 'id_jadwal',
+      'label' => 'id_jadwal',
+      'rules' => 'required'],
 
-            ['field' => 'j_pesanan',
-            'label' => 'j_pesanan',
-            'rules' => 'required'],
+      ['field' => 'j_pesanan',
+      'label' => 'j_pesanan',
+      'rules' => 'required'],
 
-            ['field' => 'j_kursi',
-            'label' => 'j_kursi',
-            'rules' => 'required'],
+      ['field' => 'j_kursi',
+      'label' => 'j_kursi',
+      'rules' => 'required'],
 
-            ['field' => 'j_kursib',
-            'label' => 'j_kursib',
-            'rules' => 'required'],
+      ['field' => 'j_kursib',
+      'label' => 'j_kursib',
+      'rules' => 'required'],
 
-            ['field' => 'pemasukkan',
-            'label' => 'pemasukkan',
-            'rules' => 'required'],
-        ];
+      ['field' => 'pemasukkan',
+      'label' => 'pemasukkan',
+      'rules' => 'required'],
+    ];
+  }
+
+  public function tampil_data()
+  {
+    $tgl_awal 	= date('Y-m-d', strtotime('last month') );
+    $tgl_akhir 	= date('Y-m-d');
+    $this->db->select('*');
+    $this->db->from('recort');
+    $this->db->join('jadwal','jadwal.id_jadwal=recort.id_jadwal');
+    $this->db->join('film','film.id_film=jadwal.id_film');
+    $this->db->join('studio','studio.id_studio=jadwal.id_studio');
+    $this->db->where('tgl_jadwal >=',$tgl_awal);
+    $this->db->where('tgl_jadwal <=',$tgl_akhir);
+    $query = $this->db->get();
+    return $query->result();
+  }
+  public function pencarian()
+  {
+    $post = $this->input->post();
+    $film 		  = $this->input->post('film');
+    $studio     = $this->input->post('studio');
+    $tgl_awal 	= $this->input->post('tgl_awal');
+    $tgl_akhir 	= $this->input->post('tgl_akhir');
+    $this->db->select('*');
+    $this->db->from('recort');
+    $this->db->join('jadwal','jadwal.id_jadwal=recort.id_jadwal');
+    $this->db->join('film','film.id_film=jadwal.id_film');
+    $this->db->join('studio','studio.id_studio=jadwal.id_studio');
+    If(! empty($film)) {
+      $this->db->where("jadwal.id_film",$film);
+    }
+    If(! empty($studio)) {
+      $this->db->where('jadwal.id_studio', $studio);
+    }
+    if (! empty( $tgl_awal) && ! empty( $tgl_akhir)) {
+      // $this->db->between.....
+      // $this->db->where('jadwal.tgl_jadwal between', $tgl_awal 'and' $tgl_akhir);
+      $this->db->where('tgl_jadwal >=',$tgl_awal);
+      $this->db->where('tgl_jadwal <=',$tgl_akhir);
     }
 
-    public function tampil_data()
-    {
-      $this->db->select('*');
-      $this->db->from('recort');
-      $this->db->join('jadwal','jadwal.id_jadwal=recort.id_jadwal');
-      $this->db->join('film','film.id_film=jadwal.id_film');
-      $query = $this->db->get();
-      return $query->result();
-    }
+    $query = $this->db->get();
+    // $query = ("select * from recort
+    // join jadwal on jadwal.id_jadwal=recort.id_jadwal
+    // join film.id_film=jadwal.id_film
+    // join studio.id_studio=jadwal.id_studio
+    // where ")
+    return $query->result();
+  }
 
-    public function getAll()
-    {
-        return $this->db->get($this->_table)->result();
-    }
+  public function getAll()
+  {
+    return $this->db->get($this->_table)->result();
+  }
 
-    public function getById($id)
-    {
-        return $this->db->get_where($this->_table, ["id_recort" => $id])->row();
-    }
+  public function getById($id)
+  {
+    return $this->db->get_where($this->_table, ["id_recort" => $id])->row();
+  }
 
-    public function save()
-    {
-        $post = $this->input->post();
-        $this->id_user = uniqid();
-        $this->username = $post["id_jadwal"];
-        $this->alamat = $post["j_pesanan"];
-        $this->email = $post["j_kursi"];
-        $this->no_tlp = $post["j_kursib"];
-        $this->password = $post["pemasukkan"];
-        $this->db->insert($this->_table, $this);
-    }
+  public function save()
+  {
+    $post = $this->input->post();
+    $this->id_user = uniqid();
+    $this->username = $post["id_jadwal"];
+    $this->alamat = $post["j_pesanan"];
+    $this->email = $post["j_kursi"];
+    $this->no_tlp = $post["j_kursib"];
+    $this->password = $post["pemasukkan"];
+    $this->db->insert($this->_table, $this);
+  }
 
-    public function update()
-    {
-        $post = $this->input->post();
-        $this->id_user = $post["id"];
-        $this->username = $post["id_jadwal"];
-        $this->alamat = $post["j_pesanan"];
-        $this->email = $post["j_kursi"];
-        $this->no_tlp = $post["j_kursib"];
-        $this->password = $post["pemasukkan"];
-        $this->db->update($this->_table, $this, array('id_recort' => $post['id']));
-    }
+  public function update()
+  {
+    $post = $this->input->post();
+    $this->id_user = $post["id"];
+    $this->username = $post["id_jadwal"];
+    $this->alamat = $post["j_pesanan"];
+    $this->email = $post["j_kursi"];
+    $this->no_tlp = $post["j_kursib"];
+    $this->password = $post["pemasukkan"];
+    $this->db->update($this->_table, $this, array('id_recort' => $post['id']));
+  }
 
-    public function delete($id)
-    {
-        return $this->db->delete($this->_table, array("id_recort" => $id));
-    }
+  public function delete($id)
+  {
+    return $this->db->delete($this->_table, array("id_recort" => $id));
+  }
 }
