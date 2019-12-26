@@ -88,7 +88,7 @@
       </li>
       <li class="treeview">
         <a href="<?php echo base_url() ?>index.php/admin/recordctr/index">
-          <i class="fa fa-th"></i>
+          <i class="fa fa-file-text"></i>
           <span>Laporan</span>
         </a>
       </li>
