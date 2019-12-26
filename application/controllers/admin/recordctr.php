@@ -22,6 +22,22 @@ class recordctr extends CI_Controller
 
     }
 
+    public function cari_jadwal()
+	{
+    $cari = $this->recordmdl;
+    $cari->pencarian();
+		$film 		  = $this->input->post('film ');
+		$studio     = $this->input->post('studio');
+		$tgl_awal 	= $this->input->post('tgl_awal');
+    $tgl_akhir 	= $this->input->post('tgl_akhir');
+
+    $data['recort'] = $this->recordmdl->pencarian();
+    $this->load->view('template/header');
+    $this->load->view('template/aside');
+    $this->load->view('konten/record/v_record.php', $data);
+    $this->load->view('template/footer');
+	}
+
     public function add()
     {
 
