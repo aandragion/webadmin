@@ -6,7 +6,8 @@
 	<div class="row">
 
 		<form method="post" action="<?php echo site_url("admin/studioctr/pencarian")?>">
-			<div class="col-md-2 col-sm-2 col-xs-2" align="center"> <br>
+			<div class="row">
+			<div class="col-md-3 col-sm-3 col-xs-3" align="center"> <br>
 				<select class="form-control" name="id_jadwal">
 					<option>-Pilih Jadwal-</option>
 					<?php
@@ -14,6 +15,7 @@
 					<option value="<?php echo $row->id_jadwal ?>"><?php echo $row->judul_film ?>	<?php echo $row->tgl_jadwal ?></option>
 				<?php endforeach; ?>
 			</select>
+			</div>
 		</div><br>
 		<button  type="submit" class="btn btn-primary">Cari</button>
 		<!-- <br><input type="submit" class="btn btn-primary" value="Cari"> -->
@@ -76,7 +78,7 @@
 </div> -->
 <?php endforeach; ?>
 <!-- end looping -->
-<!-- </div> --> 
+<!-- </div> -->
 <!-- /.content -->
 </div>
 </div>
