@@ -6,9 +6,11 @@
   <script>
   function printContent(el){
     var judul = document.getElementById('judul');
+    var judul1 = document.getElementById('judul1');
     judul.style.textAlign ="center";
-    judul.innerHTML = 'LAPORAN REKAPITULASI NEW STAR CINEPLEX';
-
+    judul.innerHTML = 'LAPORAN REKAPITULASI';
+    judul1.style.textAlign ="center";
+    judul1.innerHTML = 'BIOSKOP NEW STAR CINEPLEX BANYUWANGI';
     var restorepage = document.body.innerHTML;
     var printcontent = document.getElementById(el).innerHTML;
     document.body.innerHTML = printcontent;
@@ -51,8 +53,8 @@
               <div class="form-group">
                 <label for="sel1">Range Tanggal :</label>
                 <div  class="row">
-                  <div class='col-md-6'><input type="date" name="tgl_awal"  required placeholder="Masukkan Modal Name" class="form-control" ></div>
-                  <div class='col-md-6'><input type="date" name="tgl_akhir"  required placeholder="Masukkan Modal Name" class="form-control" ></div>
+                  <div class='col-md-6'><input type="date" name="tgl_awal"   class="form-control" ></div>
+                  <div class='col-md-6'><input type="date" name="tgl_akhir"  class="form-control" ></div>
                 </div>
               </div>
               <div class="form-group">
@@ -60,9 +62,32 @@
               </div>
             </div>
             <?php echo form_close(); ?>
-
+            <!-- <div class="col-lg-12 col-md-12 col-md-auto">
+              <div class="form-group">
+                <?php
+                $film = $this->input->post('film');
+                $studio = $this->input->post('studio');
+                $awal = $this->input->post('tgl_awal');
+                $akhir= $this->input->post('tgl_akhir');
+                if($film || $j_studio || $minggu ) {
+                  $data_film = $this->db->query("SELECT * FROM film where id_film='$film'")->result();
+                  foreach ($data_film as $value) {
+                    $j_film = $value->judul_film;
+                  }
+                  $data_studio = $this->db->query("SELECT * FROM studio where id_studio='$studio'")->result();
+                  foreach ($data_studio as $value) {
+                    $j_studio =$value->studio;
+                  }
+                }
+                if($j_film || $j_studio || $minggu != null) {
+                  echo 'Pencarian : <br>Film : <strong>'.$j_film. ', </strong> Studio : <strong>' .$j_studio. ', </strong> <br>Periode : <strong>' .$awal.'</strong> sampai  <strong>' .$akhir.'</strong>';
+                }
+                ?>
+              </div>
+            </div> -->
           </div>
         </div>
+
         <div class="panel-body">
           <ul class="pull-right">
             <button class="btn btn-primary" onclick="printContent('div1')"><i class="fa fa-print"></i>Print</button>
@@ -74,15 +99,16 @@
           <hr>
           <div class="panel panel-primary">
             <div class="panel-heading">
-
               <i class="fa fa-file-text"></i> Data Laporan
-
-
             </div>
             <div class="panel-body">
 
               <div id="div1" class="table-responsive">
+                <div id="judul">
 
+                </div>
+                <div id="judul1">
+                </div>
                 <!-- <div class="title">
                 <center>
                 DAFTAR MAHASISWA<br/>
@@ -110,14 +136,14 @@
                   <tr class="odd gradeX" >
 
                     <td><center/><?php echo $no++; ?></td>
-                    <td width="150">
+                    <td>
                       <?php echo $recort->judul_film ?>
                     </td>
                     <td>
                       <?php
                       // $tanggal = $recort->tgl_jadwal;
                       // echo date('d/m/Y', strtotime($tanggal))
-                      echo $recort->tgl_jadwal; 
+                      echo $recort->tgl_jadwal;
                       ?>
                     </td>
                     <td><center/>
@@ -147,6 +173,7 @@
 
             </tbody>
           </table>
+
         </div>
       </div>
     </div>
