@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css');?>">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!--     <meta http-equiv="refresh" content="5" / -->
+    <!-- <meta http-equiv="refresh" content="5"> / -->
 
   <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
   -->
@@ -91,7 +91,7 @@
                     </div>
                   </div>
                   <!-- /.row -->
-                </li> 
+                </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <!-- <div class="pull-left">
