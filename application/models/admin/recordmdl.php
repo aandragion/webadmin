@@ -40,13 +40,20 @@ class recordmdl extends CI_Model
   {
     $tgl_awal 	= date('Y-m-d', strtotime('last month') );
     $tgl_akhir 	= date('Y-m-d');
-    $this->db->select('*');
-    $this->db->from('recort');
-    $this->db->join('jadwal','jadwal.id_jadwal=recort.id_jadwal');
-    $this->db->join('film','film.id_film=jadwal.id_film');
-    $this->db->join('studio','studio.id_studio=jadwal.id_studio');
+    $this->db->select('film.judul_film');
+    $this->db->select('jadwal.tgl_jadwal');
+    $this->db->select('studio.studio');
+    $this->db->select('COUNT(id_pesan) AS j_pesan');
+    $this->db->select('SUM(pesan.jumlah_pesanan) AS j_kursi');
+    $this->db->select('SUM(pesan.total_harga) AS masuk');
+    $this->db->from('jadwal');
+    $this->db->join('pesan','pesan.id_jadwal=jadwal.id_jadwal','Left');
+    $this->db->join('film','film.id_film=jadwal.id_film','Left');
+    $this->db->join('studio','studio.id_studio=jadwal.id_studio','Left');
+  $this->db->where("(pesan.id_status= 1 or pesan.id_status= 3)");
     $this->db->where('tgl_jadwal >=',$tgl_awal);
     $this->db->where('tgl_jadwal <=',$tgl_akhir);
+    $this->db->group_by('jadwal.id_jadwal');
     $query = $this->db->get();
     return $query->result();
   }
@@ -57,11 +64,20 @@ class recordmdl extends CI_Model
     $studio     = $this->input->post('studio');
     $tgl_awal 	= $this->input->post('tgl_awal');
     $tgl_akhir 	= $this->input->post('tgl_akhir');
-    $this->db->select('*');
-    $this->db->from('recort');
-    $this->db->join('jadwal','jadwal.id_jadwal=recort.id_jadwal');
-    $this->db->join('film','film.id_film=jadwal.id_film');
-    $this->db->join('studio','studio.id_studio=jadwal.id_studio');
+    $this->db->select('film.judul_film');
+    $this->db->select('jadwal.tgl_jadwal');
+    $this->db->select('studio.studio');
+    $this->db->select('COUNT(id_pesan) AS j_pesan');
+    $this->db->select('SUM(pesan.jumlah_pesanan) AS j_kursi');
+    $this->db->select('SUM(pesan.total_harga) AS masuk');
+    $this->db->from('jadwal');
+    $this->db->join('pesan','pesan.id_jadwal=jadwal.id_jadwal','Left');
+    $this->db->join('film','film.id_film=jadwal.id_film','Left');
+    $this->db->join('studio','studio.id_studio=jadwal.id_studio','Left');
+    // $this->db->where('tgl_jadwal >=',$tgl_awal);
+    // $this->db->where('tgl_jadwal <=',$tgl_akhir);
+  $this->db->where("(pesan.id_status= 1 or pesan.id_status= 3)");
+// $this->db->where('pesan.id_status',3);
     If(! empty($film)) {
       $this->db->where("jadwal.id_film",$film);
     }
@@ -74,7 +90,7 @@ class recordmdl extends CI_Model
       $this->db->where('tgl_jadwal >=',$tgl_awal);
       $this->db->where('tgl_jadwal <=',$tgl_akhir);
     }
-
+$this->db->group_by('jadwal.id_jadwal');
     $query = $this->db->get();
     // $query = ("select * from recort
     // join jadwal on jadwal.id_jadwal=recort.id_jadwal
