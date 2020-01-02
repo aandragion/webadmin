@@ -13,11 +13,11 @@
     judul.innerHTML = 'LAPORAN REKAPITULASI';
     judul1.style.textAlign ="center";
     judul1.innerHTML = 'BIOSKOP NEW STAR CINEPLEX BANYUWANGI';
-    logo.style.textAlign ="center";
-    logo.innerHTML = 'PERIODE 01/12/2019 sampai 31/12/2019';
-    // logo.innerHTML = "'Periode.'<?php
-    // echo $awal;
-    ?>'sampai'";
+   //  logo.style.textAlign ="center";
+   //  // logo.innerHTML = 'PERIODE 01/12/2019 sampai 31/12/2019';
+   // logo.innerHTML = "'Periode.'<?php
+   //  echo $awal
+   //  ?>'sampai'";
     var restorepage = document.body.innerHTML;
     var printcontent = document.getElementById(el).innerHTML;
     document.body.innerHTML = printcontent;
@@ -71,25 +71,25 @@
             </div>
           </div>
           <?php echo form_close(); ?>
-          <!-- <div class="col-lg-12 col-md-12 col-md-auto">
+        <!-- <div class="col-lg-12 col-md-12 col-md-auto">
           <div class="form-group">
           <?php
           $film = $this->input->post('film');
           $studio = $this->input->post('studio');
           $awal = $this->input->post('tgl_awal');
           $akhir= $this->input->post('tgl_akhir');
-          if($film || $j_studio || $minggu ) {
-          $data_film = $this->db->query("SELECT * FROM film where id_film='$film'")->result();
-          foreach ($data_film as $value) {
-          $j_film = $value->judul_film;
-        }
-        $data_studio = $this->db->query("SELECT * FROM studio where id_studio='$studio'")->result();
-        foreach ($data_studio as $value) {
-        $j_studio =$value->studio;
-      }
-    }
-    if($j_film || $j_studio || $minggu != null) {
-    echo 'Pencarian : <br>Film : <strong>'.$j_film. ', </strong> Studio : <strong>' .$j_studio. ', </strong> <br>Periode : <strong>' .$awal.'</strong> sampai  <strong>' .$akhir.'</strong>';
+    //       if($film || $j_studio || $minggu ) {
+    //       $data_film = $this->db->query("SELECT * FROM film where id_film='$film'")->result();
+    //       foreach ($data_film as $value) {
+    //       $j_film = $value->judul_film;
+    //     }
+    //     $data_studio = $this->db->query("SELECT * FROM studio where id_studio='$studio'")->result();
+    //     foreach ($data_studio as $value) {
+    //     $j_studio =$value->studio;
+    //   }
+    // }
+    if($film || $studio || $awal != null) {
+    echo 'Pencarian : <br>Film : <strong>'.$film. ', </strong> Studio : <strong>' .$studio. ', </strong> <br>Periode : <strong>' .$awal.'</strong> sampai  <strong>' .$akhir.'</strong>';
   }
   ?>
 </div>
@@ -126,6 +126,9 @@
         UNIVERSITAS MUHAMMADIYAH SIDOARJO
       </center>
     </div> -->
+    <?php   if($awal || $akhir != null) {
+      echo 'Periode : <strong>' .$awal.'</strong> sampai <strong>' .$akhir.'</strong><br>';
+    } ?>
     <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
       <thead>
         <tr>
