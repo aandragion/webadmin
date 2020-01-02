@@ -50,7 +50,7 @@ class recordmdl extends CI_Model
     $this->db->join('pesan','pesan.id_jadwal=jadwal.id_jadwal','Left');
     $this->db->join('film','film.id_film=jadwal.id_film','Left');
     $this->db->join('studio','studio.id_studio=jadwal.id_studio','Left');
-  $this->db->where("(pesan.id_status= 1 or pesan.id_status= 3)");
+    $this->db->where("(pesan.id_status= 1 or pesan.id_status= 3)");
     $this->db->where('tgl_jadwal >=',$tgl_awal);
     $this->db->where('tgl_jadwal <=',$tgl_akhir);
     $this->db->group_by('jadwal.id_jadwal');
