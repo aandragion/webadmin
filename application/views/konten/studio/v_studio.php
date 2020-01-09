@@ -54,7 +54,7 @@
 
 		<div class='col-xs-1' >
 		<div class='panel panel-default' >
-		<div  class='panel-body' style='text-align: center'><input type='checkbox' nama='seat[]'";
+		<div  class='panel-body' style='text-align: center'><input disabled type='checkbox' nama='seat[]'";
 		foreach($filkur as $bookings){
 			echo ($bookings === $key) ? 'checked':'';
 
